@@ -14,5 +14,6 @@ app.use(express.json({ extended: false }))
 app.use("/api/payment/", payment)
 app.set('port', PORT);
 
+app.get("/", (req, res)=>{res.send(`Server started on ${PORT}`)})
 
 app.listen(app.get('port'), () => console.log(`http://localhost:${PORT || 5000}`))
