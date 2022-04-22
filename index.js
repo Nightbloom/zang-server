@@ -3,7 +3,7 @@ const cors = require('cors');
 const app = express()
 const env = require("dotenv");
 env.config({ path: "./config/.env" })
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 5000
 const db = require('./config/db');
 const payment = require("./routers/payment-routes")
 
@@ -12,5 +12,7 @@ app.use(cors());
 app.use(express.json({ extended: false }))
 
 app.use("/api/payment/", payment)
+app.set('port', PORT);
 
-app.listen(PORT || 5000, () => console.log(`http://localhost:${PORT || 5000}`))
+
+app.listen(app.get('port'), () => console.log(`http://localhost:${PORT || 5000}`))
